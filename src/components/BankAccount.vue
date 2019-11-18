@@ -7,34 +7,36 @@
 </template>
 
 <script>
-import { eventBus } from "../event-bus";
+import { mapGetters } from "vuex";
+
+// import { eventBus } from "../event-bus";
 
 export default {
   name: "BankAccount",
   props: {
     msg: String
   },
-  data: () => {
-    return {
-      balance: 1000000000
-    };
-  },
+  // data: () => {
+  //   return {
+  //     balance: 1000000000
+  //   };
+  // },
   methods: {
     // makePurchase: function() {
     //   EventBus.$on("item-purchased", data => {
     //     alert('data', data)
     //   });
     // }
+
   },
   computed: {
     formatNumber: function() {
-      return this.balance.toString().replace(/(\d)(?=(\d{3})+(?!\d))/g, "$1,");
-    }
+      return this.allBalance.toString().replace(/(\d)(?=(\d{3})+(?!\d))/g, "$1,");
+    },
+    ...mapGetters(['allBalance'])
   },
   created() {
-      eventBus.$on('total-purchase', data => {
-          this.balance = this.balance - data
-      })
+   
   },
   
 };

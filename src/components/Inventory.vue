@@ -1,7 +1,7 @@
 <template>
   <div class="container">
     <ul class="flex flex-wrap mb-4 -mx-2">
-      <li class="w-1/3 px-2 mb-4" v-for="item in inventory" :key="item.id" :data-id="item.id">
+      <li class="w-1/3 px-2 mb-4" v-for="item in allInventory" :key="item.id" :data-id="item.id">
         <div class="rounded overflow-hidden shadow-lg min-h-full">
           <div
             class="bg-white bg-no-repeat bg-center h-40"
@@ -28,6 +28,7 @@
                 tabindex="0"
               >&#43;</button>
             </div>
+          
             <button
               class="bg-secondary hover:bg-primary p-4 text-white rounded"
               v-on:click="sendPurchase(item.id)"
@@ -40,8 +41,9 @@
 </template>
 
 <script>
-import { inventory } from "../inventory/inventory";
-import { eventBus } from "../event-bus";
+// import { inventory } from "../inventory/inventory";
+
+import { mapGetters, mapActions } from "vuex";
 
 export default {
   name: "Inventory",
@@ -50,26 +52,26 @@ export default {
   },
   data: () => {
     return {
-      inventory: inventory,
       purchaseMade: false
     };
   },
+  computed: mapGetters(['allInventory']),
   methods: {
+    ...mapActions(['makePurchase']),
     getItemAmount: function(id) {
-      const item = this.inventory
+      const item = this.allInventory
         .filter(item => item.id === id)
         .map(item => item.price);
       return item[0];
-      // eventBus.$emit('item-purchased', data)
     },
     getItemQuantity: function(id) {
-      const item = this.inventory
+      const item = this.allInventory
         .filter(item => item.id === id)
         .map(item => item.quantity);
       return item[0];
     },
     clearQuantity: function() {
-      this.inventory.map(i => {
+      this.allInventory.map(i => {
         i.quantity = 0;
       });
     },
@@ -77,7 +79,7 @@ export default {
       const price = this.getItemAmount(id);
       const quantity = this.getItemQuantity(id);
       const total = price * quantity;
-      eventBus.$emit("total-purchase", total);
+      this.makePurchase(total)
       this.clearQuantity();
     },
     // sellPurchase: function(id) {
@@ -102,10 +104,6 @@ export default {
       }
     }
   },
-  computed: {},
-  watch: {
-    // getItemQuantity: function() {}
-  }
 };
 </script>
 
