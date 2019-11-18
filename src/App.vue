@@ -3,7 +3,7 @@
     <Header />
     <BankAccount />
     <Inventory />
-    <!-- <HelloWorld msg="Welcome to Your Vue.js App"/> -->
+    <Cart />
   </div>
 </template>
 
@@ -12,13 +12,15 @@
 import Header from "./components/Header";
 import BankAccount from "./components/BankAccount";
 import Inventory from "./components/Inventory";
+import Cart from "./components/Cart";
 
 export default {
   name: "app",
   components: {
     BankAccount,
     Header,
-    Inventory
+    Inventory,
+    Cart
   },
   methods: {
     updateBalance(e) {

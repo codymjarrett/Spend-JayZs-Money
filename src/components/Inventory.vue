@@ -41,7 +41,6 @@
 </template>
 
 <script>
-// import { inventory } from "../inventory/inventory";
 
 import { mapGetters, mapActions } from "vuex";
 
@@ -57,7 +56,7 @@ export default {
   },
   computed: mapGetters(['allInventory']),
   methods: {
-    ...mapActions(['makePurchase']),
+    ...mapActions(['makePurchase', 'increaseNumberOfPurchase']),
     getItemAmount: function(id) {
       const item = this.allInventory
         .filter(item => item.id === id)
@@ -77,9 +76,11 @@ export default {
     },
     sendPurchase: function(id) {
       const price = this.getItemAmount(id);
-      const quantity = this.getItemQuantity(id);
+      const quantity = parseInt(this.getItemQuantity(id));
       const total = price * quantity;
-      this.makePurchase(total)
+      const payload = {id: id, quantity: quantity}
+      this.increaseNumberOfPurchase(payload);
+      this.makePurchase(total);
       this.clearQuantity();
     },
     // sellPurchase: function(id) {
