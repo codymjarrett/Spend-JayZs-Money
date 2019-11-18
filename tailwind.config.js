@@ -288,7 +288,11 @@ module.exports = {
 		}),
 		inset: {
 			'0': '0',
+			'1': '1rem',
+			'5': '5%',
 			auto: 'auto',
+			'25': '25%',
+			'1/2': '50%',
 		},
 		letterSpacing: {
 			tighter: '-0.05em',
@@ -340,6 +344,7 @@ module.exports = {
 		},
 		minWidth: {
 			'0': '0',
+			'custom-330px': '20.625rem',
 			full: '100%',
 		},
 		objectPosition: {
@@ -440,7 +445,7 @@ module.exports = {
 		borderColor: ['responsive', 'hover', 'focus'],
 		borderRadius: ['responsive'],
 		borderStyle: ['responsive'],
-		borderWidth: ['responsive'],
+		borderWidth: ['responsive', 'first'],
 		boxShadow: ['responsive', 'hover', 'focus'],
 		cursor: ['responsive'],
 		display: ['responsive'],

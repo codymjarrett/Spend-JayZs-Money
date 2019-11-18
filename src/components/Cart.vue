@@ -1,11 +1,11 @@
 <template>
-	<div>
-		<span>cart</span>
+	<div class=" bg-yellow-600 p-4 text-center lg:fixed lg:right-5 lg:top-1 lg:z-10 lg:rounded-sm lg:min-w-custom-330px">
+		<span class="text-2xl uppercase">cart</span>
         <ul>
-            <li v-for="item in allInventory" :key="item.id">
-                <div v-if="item.purchased">
-                    <span >{{ item.name}}</span>
-                    <span>{{item.purchased}} x</span>
+            <li class="p-2 border-t first:border-t-0 border-solid border-black" v-for="item in displayCurrentCard" :key="item.id" >
+                <div >
+                    <span >{{ item.name}} - </span>
+                    <span>{{item.purchased}}x</span>
                 </div>
             </li>
         </ul>
@@ -22,7 +22,11 @@ export default {
 		msg: String,
 	},
 	computed: {
-		...mapGetters(['allInventory']),
+        ...mapGetters(['allInventory']),
+        displayCurrentCard: function(){
+            const cart = this.allInventory.filter(i => i.purchased)
+            return cart
+        }
     },
     
 }

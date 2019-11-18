@@ -7,6 +7,7 @@ export const inventory = [
 		price: 50000,
 		quantity: 0,
 		purchased: 0,
+		sold: 0,
 		fullSize: true,
 	},
 	{
@@ -17,6 +18,7 @@ export const inventory = [
 		price: 4500,
 		quantity: 0,
 		purchased: 0,
+		sold: 0,
 	},
 	{
 		id: 3,
@@ -27,6 +29,7 @@ export const inventory = [
 		price: 40000000,
 		quantity: 0,
 		purchased: 0,
+		sold: 0,
 	},
 	{
 		id: 4,
@@ -36,6 +39,7 @@ export const inventory = [
 		price: 1449,
 		quantity: 0,
 		purchased: 0,
+		sold: 0,
 	},
 	{
 		id: 5,
@@ -45,6 +49,7 @@ export const inventory = [
 		price: 3.99,
 		quantity: 0,
 		purchased: 0,
+		sold: 0,
 		fullSize: true,
 	},
 	{
@@ -55,6 +60,7 @@ export const inventory = [
 		price: 36600,
 		quantity: 0,
 		purchased: 0,
+		sold: 0,
 	},
 	{
 		id: 7,
@@ -64,6 +70,7 @@ export const inventory = [
 		price: 5.25,
 		quantity: 0,
 		purchased: 0,
+		sold: 0,
 		fullSize: true,
 	},
 	{
@@ -74,6 +81,7 @@ export const inventory = [
 		price: 5000000,
 		quantity: 0,
 		purchased: 0,
+		sold: 0,
 		fullSize: true,
 	},
 	{
@@ -84,6 +92,7 @@ export const inventory = [
 		price: 12.99,
 		quantity: 0,
 		purchased: 0,
+		sold: 0,
 		fullSize: true,
 	}
 ]

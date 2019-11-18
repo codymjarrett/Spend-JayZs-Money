@@ -1,16 +1,14 @@
 import Vuex from 'vuex'
 import Vue from 'vue'
 
-import inventory from './modules/inventory'
-import bank from './modules/bank'
+import state from './modules/state'
 
 Vue.use(Vuex)
 
 
 export default new Vuex.Store({
     modules: {
-        inventory,
-        bank,
+        state,
         
     }
 })
