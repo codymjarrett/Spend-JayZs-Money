@@ -15,26 +15,26 @@
           ></div>
           <div class="p-4 bg-primary-light text-center text-2xl max-h-full">{{ item.name }}</div>
           <div class="text-center p-4 text-2xl">${{ formatNumber(item.price) }}</div>
-          <div class="flex flex-wrap justify-around pb-4">
+          <div class="flex flex-col flex-wrap p-4 lg:flex-row lg:justify-around lg:p-0 lg:pb-4">
             <!-- find out how to break this out into a computed function -->
             <button
               v-on:click="sellItem(item)"
               class="bg-secondary p-4 text-white rounded"
               :class="renderDisabledButton(item)"
             >Sell</button>
-            <div class="relative">
+            <div class="relative my-4 lg:my-0">
               <button
-                class="decrement bg-tetriary text-white p-4 absolute top-0 left-0"
+                class="decrement rounded-l bg-tetriary text-white p-4 absolute top-0 left-0 lg:rounded-none"
                 :class="
-									item.quantity == 0 &&
-										'opacity-50 cursor-not-allowed pointer-events-none'
-								"
+                  item.quantity == 0 &&
+                    'opacity-50 cursor-not-allowed pointer-events-none'
+                "
                 v-on:click="decrement(item)"
                 tabindex="0"
               >&#45;</button>
-              <input class="text-center p-4" type="number" min="0" v-model="item.quantity" />
+              <input class="text-center p-4 w-full" type="number" min="0" v-model="item.quantity" />
               <button
-                class="increment bg-tetriary text-white p-4 absolute top-0 right-0"
+                class="increment rounded-r bg-tetriary text-white p-4 absolute top-0 right-0 lg:rounded-none"
                 v-on:click="increment(item)"
                 v-on:keyup.enter="item.quantity++"
                 tabindex="0"
@@ -73,8 +73,8 @@ export default {
       "makePurchase",
       "sellPurchase",
       "increaseNumberOfPurchase"
-	]),
-	formatNumber: function(price) {
+  ]),
+  formatNumber: function(price) {
       return price.toString().replace(/(\d)(?=(\d{3})+(?!\d))/g, "$1,");
     },
     clearQuantity: function() {
@@ -130,3 +130,4 @@ input[type="number"]::-webkit-outer-spin-button {
   -webkit-appearance: none;
 }
 </style>
+
