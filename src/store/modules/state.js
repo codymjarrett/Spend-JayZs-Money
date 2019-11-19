@@ -7,21 +7,30 @@ const state = {
 const getters = {
 	allInventory: state => state.inventory,
 	allBalance: state => state.balance,
+	getItemQuantity: state => id => {
+		const item = state.inventory.filter(i => i.id === id).map(n => n.quantity)
+		return parseInt(item[0])
+	},
+	getItemAmount: state => id => {
+		const item = state.inventory.filter(i => i.id === id).map(n => n.price)
+		return parseInt(item[0])
+	},
 }
 const actions = {
 	// inventory actions
 	increaseNumberOfPurchase({ commit }, payload) {
 		commit('setNumberOfPurchases', payload)
 	},
-	makeASell({ commit }, payload) {
-		commit('setASell', payload)
-	},
+	// makeASell({ commit }, payload) {
+	// 	commit('setASell', payload)
+	// },
 	//bank actions
 	makePurchase({ commit }, purchaseAmount) {
 		commit('setNewBalanceWithPurchase', purchaseAmount)
 	},
-	sellPurchase({ commit }, soldAmount) {
-		commit('setNewBalanceWithSell', soldAmount)
+
+	sellPurchase({ commit }, payload) {
+		commit('setANewSell', payload)
 	},
 }
 const mutations = {
@@ -33,13 +42,18 @@ const mutations = {
 			}
 		})
 	},
-	setASell: (state, payload) => {
+	setANewSell: (state, payload) => {
 		state.inventory
 			.filter(item => item.id === payload.id)
 			.forEach(i => {
-				if (i.purchased > 0) {
+				if (i.quantity > i.purchased) {
+					alert("Nah G, you ain't got that!")
+					return
+				}
+				if (i.quantity <= i.purchased || i.purchased > 0) {
 					i.purchased -= payload.quantity
 					i.sold = payload.quantity
+					state.balance += payload.total
 				}
 				return
 			})
@@ -47,13 +61,9 @@ const mutations = {
 	// bank mutations
 	setNewBalanceWithPurchase: (state, purchaseAmount) =>
 		(state.balance -= purchaseAmount),
-	setNewBalanceWithSell: (state, soldAmount) => {
-		state.balance.forEach(i => {
-			if (i.purchased > 0) {
-				state.balance += soldAmount
-			}
-		})
-	},
+	// setNewBalanceWithSell: (state, soldAmount) => {
+	// 	state.balance += soldAmount
+	// },
 }
 
 export default {
