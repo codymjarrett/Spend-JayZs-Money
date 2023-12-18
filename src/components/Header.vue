@@ -4,7 +4,7 @@
       <div class="flex items-center justify-center mb-3">
         <img
         class="rounded-full w-48 h-48 object-cover"
-          src="https://peopledotcom.files.wordpress.com/2019/06/jay-z.jpg"
+          src="./assets/jayz.webp"
           alt="Jay-z"
         />
       </div>
