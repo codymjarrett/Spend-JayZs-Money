@@ -4,8 +4,8 @@
       <div class="flex items-center justify-center mb-3">
         <img
         class="rounded-full w-48 h-48 object-cover"
-          src="./assets/jayz.webp"
-          alt="Jay-z"
+        :src="require('@/assets/jayz.webp')"
+        alt="Jay-z"
         />
       </div>
       <h1 class="text-center text-5xl">Spend Jay-z's Money</h1>
